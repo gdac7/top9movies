@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}details{% endblock %}
+
+{% block styles %}
+{{ super() }}
+<style>
+    body {
+        background: url({{details.background_img}});
+    }
+</style>
+{% endblock %}
+
+{% block title%}{% endblock %}
+
+{% block content %}
+<body>
+    <div class="card text-center" style="width: 50rem; margin:17.5rem auto 17.5rem">
+        <div class="card-body">
+          <h5 class="card-title">{{ details.original_title }}</h5>
+          <p class="card-text">original language: {{ details.original_language }}</p>
+          <p class="card-text">realease date: {{ details.release_date }}</p>
+          <p class="card-text">runtime: {{ details.runtime }}min</p>
+          <p class="card-text">{{ details.overview }}</p>
+          <p class="card-text">TMDB user rating: <strong>{{ details.user_rating }}%</strong> </p>
+          <a href="{{ url_for('index') }}" class="btn btn-dark">home page</a>
+        </div>
+      </div>
+</body>
+{% endblock %}

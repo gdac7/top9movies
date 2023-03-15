@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}add new movie{% endblock %}
+
+
+
+{% block content %}
+
+<body>
+    
+
+    <div class="container text-center">     
+           
+            <!-- Movie card -->
+            <div class="card-container card-selected my-3" style="width: 20rem; margin: auto;">
+                <h3>Please add your rating, review and ranking bellow:</h3>
+                <div class="card my-1 movie-card">
+                    {% if poster %}
+                        {% set img =  img_url + poster %}
+                        <img src="{{ img }}" class="card-img-top" alt="...">
+                    {% endif %}
+                    <div class="card-body">
+                        
+                        <h5 class="card-title">{{ title }}</h5>
+                        <form action="" method="POST">
+                            {{ form.csrf_token }}
+                            <h5 class="card-title rating">{{ form.rating }} /5 &#11088;</h5>
+                            <p class="card-text">{{ form.review }}</p>   
+                            {% if form.ranking %}
+                                <h7 class="rank-form">add in rank  {{ form.ranking }} </h7>
+                            {% endif %} 
+                            <button type="submit" class="btn btn-success">add</button>                        
+                        </form>                                       
+                        
+                    </div>                         
+                </div>
+            </div>
+        
+    </div> 
+
+</body>
+{% endblock %}

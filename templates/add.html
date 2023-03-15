@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+
+
+{% block title %}add new movie{% endblock %}
+
+
+
+{% block content %}
+<body>
+    <!-- Form to receive the movie -->
+    <div class="add-container">
+        <h2>Enter the movie name:</h2>
+        <form action="{{ url_for('search', ranking=ranking) }}" method="POST" class="add-form">
+            {{ form.csrf_token }}
+            {{ form.name.label }}  {{ form.name(size=20) }}
+            <input type="submit" name="" id="" value="search" class="btn btn-dark">
+    
+        </form>
+        <a href="{{ url_for('popular_movies', ranking=ranking) }}" class="btn btn-secondary">Not sure which movie to search for? See current popular movies in TMDB!</a>
+    </div>
+    
+    <!-- Selected movie -->
+    
+    <div>  
+        <div id="selected-movie" class="card container text-center" style="width: 18rem;">
+            
+        </div>
+    </div>
+    
+    <!-- Rendering movies  -->
+    {% if movies %}
+
+            <div class="container text-center">                
+                <div class="row">
+                    {% for movie in movies %}
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="card my-5 movie-card">
+                            {% if movie.poster_path %}
+                                {% set img =  img_url + movie.poster_path %}
+                                <img src="{{ img }}" class="card-img-top" alt="...">
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title">{{ movie.original_title }}</h5>
+                                <p class="card-text">{{ movie.overview }}</p>                                       
+                                <button class="select-button btn btn-success">select</button>
+                                <button class="unselect-button btn btn-danger" style="display: none;">unselect</button>
+                                {% if movie.poster_path %}
+                                    <a class="confirm-button btn btn-success" style="display: none;" 
+                                    href="{{ url_for('show_selected_movie', movie_title=movie.original_title, ranking=ranking, tmdb_id=movie.id, poster_path=movie.poster_path) }}">confirm</a>
+                                {% else %}
+                                    <a class="confirm-button btn btn-success" style="display: none;" 
+                                    href="{{ url_for('show_selected_movie', movie_title=movie.original_title, ranking=ranking, tmdb_id=movie.id) }}">confirm</a>
+                                {% endif %}
+                            </div>                         
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div> 
+            </div>
+       
+    {% endif %}
+
+    <script src="{{ url_for('static', filename='add_page.js') }}"></script>
+</body>
+{% endblock %}
