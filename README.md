@@ -1,1 +1,1 @@
-https://gdac7.github.io/top9movies/
+https://gdac7.github.io/top9movies/templates/index.html
