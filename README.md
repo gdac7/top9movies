@@ -1,8 +1,5 @@
 # top9movies
 
-![image](https://user-images.githubusercontent.com/121177058/226389198-9f39614d-e477-4cbd-9e54-b46dae250824.png)
-
-
 
 **static/**<br>
 contains css file for whole site and js file for add_page.
